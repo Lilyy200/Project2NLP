@@ -1,6 +1,7 @@
 #\utilitaires\predictions.py
 import joblib
 from model_files import model_files
+import tensorflow as tf
 
 # Function to load the model based on the file path
 def load_model(model_name):
