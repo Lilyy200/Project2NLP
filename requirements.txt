@@ -1,0 +1,15 @@
+pandas
+numpy
+tqdm
+matplotlib
+xgboost
+gensim
+nltk
+tensorflow
+tensorflow-hub
+pyspellchecker
+autocorrect
+sentence-transformers
+scikit-learn
+openpyxl
+streamlit
