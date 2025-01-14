@@ -9,6 +9,5 @@ model_files = {
     "use": "models/use_model.pkl",  # Assuming USE is a scikit-learn model
     "my_embedding": "models/my_embedding_model.h5",  # Keras model for your custom embedding
     "sentence_bert": "models/sentence_bert_model.pkl",  # Assuming sentence BERT is a scikit-learn model
-    "word2vec": "models/word2vec_model.model",  # Assuming Word2Vec is stored with its .model extension
     "xgb_regressor": "models/xgb_regressor_model.pkl"  # XGBoost model
 }

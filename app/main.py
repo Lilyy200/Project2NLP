@@ -33,8 +33,12 @@ def run():
                 if model_choice in ["my_embedding", "pretrained embedding"]:
                     # Load the tokenizer for padding the input text
                     cleaned_text = preprocess_input_text(cleaned_text, tokenizer)
-            else:
+            elif model_choice in ["use","sentence_bert"]:
                 # For BERT and other models, skip preprocessing
+                cleaned_text = user_input
+
+            else:
+                # Skip preprocessing for other models
                 cleaned_text = user_input
 
             # Load the selected model
@@ -56,8 +60,22 @@ def run():
                 # Reshape to 2D array (1 sample, n_features) for prediction
                 cleaned_text = user_input_encoded.reshape(1, -1)
 
-            # Predict using the loaded model
-            prediction = model.predict([cleaned_text])
+            elif model_choice == "sentence_bert":
+                from sentence_transformers import SentenceTransformer
+
+                # Load the Sentence-BERT model
+                sentence_bert = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+
+                # Encode the user input into embeddings
+                cleaned_text_embedding = sentence_bert.encode([cleaned_text])  # This returns a 2D array (1, embedding_size)
+                
+
+                # Use the embeddings as input for your regression/classification model
+                prediction = model.predict(cleaned_text_embedding)
+
+            else:
+                # Predict using the loaded model for other model choices
+                prediction = model.predict([cleaned_text])
 
             # Show the prediction result
             st.write(f"Prediction: {prediction}")
